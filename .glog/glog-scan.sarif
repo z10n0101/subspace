@@ -1,0 +1,496 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Glog.AI",
+          "organization": "Glog.AI",
+          "fullName": "Glog, Making software more secure",
+          "version": "1.0.0",
+          "semanticVersion": "1.0.0",
+          "informationUri": "https://www.glog.ai",
+          "rules": [
+            {
+              "id": "e714c919-1954-37ab-99a0-aef9adbb414c",
+              "name": "High-Risk Dockerfile Vulnerability: Lack of Non-Root User Specification",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe \"High-Risk Dockerfile Vulnerability: Lack of Non-Root User Specification\" is a common security vulnerability in Docker where the Dockerfile does not specify a non-root user for running the container. By default, Docker containers run as root, which means that if an attacker manages to break out of the container, they would have root access to the host system. This is a serious security concern as it can lead to unauthorized access and control over the host system.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always run your Docker containers as a non-root user. This can be achieved by creating a new user in your Dockerfile and switching to this user before executing any commands.\n\n## Source Code Fix Recommendation\n\nHere is a fix for the provided Dockerfile:\n\n```Dockerfile\nFROM golang:1.16-alpine3.13 as build\n\n# Create a new user 'nonroot'\nRUN adduser -D nonroot\n\n# Switch to the new user\nUSER nonroot\n```\n\nThis will ensure that the Docker container runs as the 'nonroot' user, significantly reducing the risk of a successful attack.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)\n\nPlease note that the links provided are active and accessible to anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "bb63bd46-c042-3630-9211-a00e62af8f00",
+              "name": "High-Risk Vulnerability in YAML Package Version 3.0.0, Fixed in Version 3.0.1 (CVE-2022-28948)",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "I'm sorry, but your request seems to be based on a hypothetical or non-existent vulnerability. As of the time of writing, there is no known vulnerability with the identifier CVE-2022-28948 in the National Vulnerability Database (NVD) or other major vulnerability databases. \n\nAdditionally, Docker is not a programming language, but a platform for developing, shipping, and running applications. YAML (YAML Ain't Markup Language) is a human-readable data serialization language, and it doesn't have a package version 3.0.0 or 3.0.1. \n\nThe module you mentioned, `github.com/subspacecommunity/subspace`, is a specific GitHub repository, not a vulnerability sink. \n\nIf you have specific questions about a real vulnerability, Docker, YAML, or the Subspace project, I'd be happy to help with those. Please provide accurate and detailed information so I can give you the most accurate assistance possible."
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "HIGH",
+                "kind": "FAIL"
+              }
+            },
+            {
+              "id": "3ec75228-f39c-3088-a91d-f25f1f4d843c",
+              "name": "High-Risk Dockerfile Vulnerability: Lack of Non-Root User Specification",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Docker, if a Dockerfile does not specify a non-root user for service execution, the Docker container may run with root privileges. This is a high-risk vulnerability because if an attacker manages to break out from the container, they could gain root access to the Docker host.\n\n## Security Concern\n\nRunning Docker containers as root is a security concern because it allows a process to gain escalated permissions on the host machine if it breaks out of the container. This could lead to unauthorized access, data leakage, or even a complete system takeover.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always run services as a non-root user in your Docker containers. This can be achieved by creating a new user and switching to it before executing any commands.\n\n## Source Code Fix Recommendation\n\nHere is a fix for the Dockerfile:\n\n```Dockerfile\nFROM alpine AS builder\n\n# Create a new user and switch to it\nRUN adduser -D nonrootuser\nUSER nonrootuser\n\n# Continue with your Dockerfile...\n```\n\nIn this example, `adduser -D nonrootuser` creates a new user named `nonrootuser`, and `USER nonrootuser` switches to that user.\n\n## References\n\n- [OWASP Docker Security](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html)\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)\n\nPlease note that the links provided are accessible to anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "f2882ad5-4ea3-384f-aaa4-0d4496cb5cc3",
+              "name": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Docker, if no user is specified, the container runs with root privileges by default. This is a high-risk vulnerability known as \"Lack of Non-Root User Specification\". If an attacker manages to break out from the container, they could gain root access to the Docker host.\n\n## Security Concern\n\nRunning a Docker container as root poses a significant security risk. If an attacker manages to exploit a vulnerability in the container or the application it's running, they could gain root access to the host system. This would give them full control over the system, allowing them to execute arbitrary code, access sensitive data, or perform other malicious activities.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should always specify a non-root user to run the container. This can be done by adding a `USER` directive in the Dockerfile. If the application needs to perform operations that require root privileges, consider using a least privilege approach where only the necessary operations are allowed.\n\n## Source Code Fix Recommendation\n\nHere's how you can modify the Dockerfile to specify a non-root user:\n\n```Dockerfile\nFROM golang:1.14 as build\n\n# Create a non-root user 'nonroot' and switch to it\nRUN useradd -m nonroot\nUSER nonroot\n```\n\nIn this example, a new user named 'nonroot' is created and the `USER` directive is used to switch to this user. Now, the container will run with the privileges of the 'nonroot' user, significantly reducing the risk of a successful attack.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "ef84730e-5043-32ac-8585-015ffe9c5dc3",
+              "name": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Docker, if no user is specified, the container runs with root privileges by default. This is a high-risk vulnerability known as \"Lack of Non-Root User Specification\". If an attacker manages to break out from the container, they could gain root access to the Docker host, leading to a serious security breach.\n\n## Security Concern\n\nRunning Docker containers as root is a security concern because it gives the container full control over the host system if the container is compromised. This could lead to unauthorized access, data leakage, denial of service, and other security incidents.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always run containers as a non-root user. This can be achieved by creating a new user in the Dockerfile and switching to that user before executing any commands.\n\n## Source Code Fix Recommendation\n\nHere is a fix for the provided Dockerfile:\n\n```Dockerfile\nFROM alpine AS builder\n\n# Create a new user and group 'appuser'\nRUN addgroup -S appuser && adduser -S appuser -G appuser\n\n# Switch to 'appuser'\nUSER appuser\n```\n\nIn this Dockerfile, a new user and group 'appuser' is created and then the Dockerfile switches to this user before executing any commands. This ensures that the container runs with the privileges of 'appuser' instead of root.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "95e06fd3-308a-3c86-bb24-b622621e5ce0",
+              "name": "High Vulnerability in Dockerfile: Lack of Non-Root User Specification",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Docker, the Dockerfile is used to build images. If a Dockerfile does not specify a non-root user for service execution, the service may run with root privileges, which is a significant security risk. This is known as \"High Vulnerability in Dockerfile: Lack of Non-Root User Specification\".\n\n## Security Concern\n\nRunning a Docker container as root allows the process inside the container almost unrestricted access. If an attacker manages to break out from the container, they could gain root access to the host system, leading to a serious security breach.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always specify a non-root user in the Dockerfile that will run the service. This can be done using the `USER` directive in the Dockerfile. \n\n## Source Code Fix Recommendation\n\nHere is how you can fix the Dockerfile:\n\n```Dockerfile\nFROM alpine AS builder\n\n# Create a group and user\nRUN addgroup -S appgroup && adduser -S appuser -G appgroup\n\n# Tell docker that all future commands should run as the appuser user\nUSER appuser\n```\n\nIn this Dockerfile, a new group and user are created, and then the `USER` directive is used to specify that all future commands should be run as the new user.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "b2d5a316-729d-3ac6-8ede-5893d477eeb1",
+              "name": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Docker, if no user is specified, the container runs with root privileges by default. This is a high-risk vulnerability known as \"Lack of Non-Root User Specification\". If an attacker manages to break out from the container, they could gain root access to the Docker host.\n\n## Security Concern\n\nRunning Docker containers as root is a security concern because it allows a process to gain escalated privileges on the host machine if it breaks out of the container. This could lead to unauthorized access, data breaches, and other security incidents.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always run containers as a non-root user. This can be achieved by creating a new user in the Dockerfile and switching to that user before executing any commands.\n\n## Source Code Fix Recommendation\n\nHere is a fix for the provided Dockerfile:\n\n```Dockerfile\nFROM alpine AS builder\n\n# Create a new user and group 'appuser'\nRUN addgroup -S appuser && adduser -S appuser -G appuser\n\n# Switch to 'appuser'\nUSER appuser\n```\n\nThis will ensure that the container runs as the non-root 'appuser' user, reducing the risk of privilege escalation.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)\n\nPlease note that the links provided are active and accessible to anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "18f872ca-1492-3066-a317-9ebe20863c6b",
+              "name": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nIn Docker, if no user is specified, the container runs with root privileges by default. This is a high-risk vulnerability known as \"Lack of Non-Root User Specification\". If an attacker manages to break out from the container, they could gain root access to the Docker host, leading to a serious security breach.\n\n## Security Concern\n\nRunning Docker containers as root is a security concern because it provides the container with potentially dangerous permissions. If an attacker manages to exploit a vulnerability in the container or the application it's running, they could gain root access to the Docker host, which would allow them to execute arbitrary commands, access sensitive data, or disrupt services.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always run containers as a non-root user. This can be achieved by creating a new user and switching to it before executing any commands in the Dockerfile.\n\n## Source Code Fix Recommendation\n\nHere is a fix for the provided Dockerfile:\n\n```Dockerfile\nFROM alpine AS builder\n\n# Create a new user and switch to it\nRUN adduser -D nonrootuser\nUSER nonrootuser\n\n# Continue with your Dockerfile...\n```\n\nIn this example, `adduser -D nonrootuser` creates a new user named `nonrootuser`, and `USER nonrootuser` switches to that user.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            }
+          ],
+          "language": "en-US",
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false
+        }
+      },
+      "language": "en-US",
+      "results": [
+        {
+          "ruleId": "bb63bd46-c042-3630-9211-a00e62af8f00",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"High Severity Vulnerability in Version 0.4.5 of a Package, Fixed in Version 0.4.14 (CVE-2023-45683)\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "go.mod",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "module github.com/subspacecommunity/subspace"
+                  }
+                }
+              },
+              "message": {
+                "text": "go.mod: github.com/crewjam/saml@v0.4.5"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "b919e278310667e88809323e55a1478a44d119770b69c07e41ead4f264555cb3",
+            "glog-pfp-ruleFileCode/v1": "ca2418d2afb329e1d69b3e1641e54bae3c37ec7664388dfa1e2e52d3065a855e"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "ca2418d2afb329e1d69b3e1641e54bae3c37ec7664388dfa1e2e52d3065a855e"
+          }
+        },
+        {
+          "ruleId": "e714c919-1954-37ab-99a0-aef9adbb414c",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "High-Risk Dockerfile Vulnerability: Lack of Non-Root User Specification"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "FROM golang:1.16-alpine3.13 as build"
+                  }
+                }
+              },
+              "message": {
+                "text": "Dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "09dc2a6c2576732f1a91445313655b2b256501748e3e36e76989e8591355fde0",
+            "glog-pfp-ruleFileCode/v1": "bd8a7f97dc90130e86c92edd81720c4fe80a1657cb4d80e058833c3edb455f87"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "bd8a7f97dc90130e86c92edd81720c4fe80a1657cb4d80e058833c3edb455f87"
+          }
+        },
+        {
+          "ruleId": "3ec75228-f39c-3088-a91d-f25f1f4d843c",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "High-Risk Dockerfile Vulnerability: Lack of Non-Root User Specification"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/dockerfiles/386.dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "FROM alpine AS builder"
+                  }
+                }
+              },
+              "message": {
+                "text": "scripts/dockerfiles/386.dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "9d41fb001c4a2b40c708d1c3c4aa693e789413f67e590ca94f5e12f5faa4d51a",
+            "glog-pfp-ruleFileCode/v1": "453b44faf514c86c7a8eb150362bc6ee986450c63701ab0d729b526ff7a3685e"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "453b44faf514c86c7a8eb150362bc6ee986450c63701ab0d729b526ff7a3685e"
+          }
+        },
+        {
+          "ruleId": "f2882ad5-4ea3-384f-aaa4-0d4496cb5cc3",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/dockerfiles/amd64.dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "FROM golang:1.14 as build"
+                  }
+                }
+              },
+              "message": {
+                "text": "scripts/dockerfiles/amd64.dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "e21e86f7c1b5b292135b37522a27b36f5840a3ca4d36c3e132e411bfb696865b",
+            "glog-pfp-ruleFileCode/v1": "445c8eaab80a70fe2bd4275db049432156c6ad5250950319e7648ef6c7a4f97c"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "445c8eaab80a70fe2bd4275db049432156c6ad5250950319e7648ef6c7a4f97c"
+          }
+        },
+        {
+          "ruleId": "ef84730e-5043-32ac-8585-015ffe9c5dc3",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/dockerfiles/arm32v5.dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "FROM alpine AS builder"
+                  }
+                }
+              },
+              "message": {
+                "text": "scripts/dockerfiles/arm32v5.dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "fc668296a0048d92164736a37ac221498cdb74f95bb48f81f33e18a7182ed50a",
+            "glog-pfp-ruleFileCode/v1": "3cf3683fb300f1a70eb901f3ac90a43d2391b11d282a07396e5ffd17b53c293f"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "3cf3683fb300f1a70eb901f3ac90a43d2391b11d282a07396e5ffd17b53c293f"
+          }
+        },
+        {
+          "ruleId": "95e06fd3-308a-3c86-bb24-b622621e5ce0",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "High Vulnerability in Dockerfile: Lack of Non-Root User Specification"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/dockerfiles/arm32v6.dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "FROM alpine AS builder"
+                  }
+                }
+              },
+              "message": {
+                "text": "scripts/dockerfiles/arm32v6.dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "f6beb5629f42145b9a606bbe3b58d698551f4bf22257fcec607562c8446988c0",
+            "glog-pfp-ruleFileCode/v1": "ab64620e239342e1a0b2ceb39e7d7c52d462cc5b9a4e0fdbda43548255377e37"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "ab64620e239342e1a0b2ceb39e7d7c52d462cc5b9a4e0fdbda43548255377e37"
+          }
+        },
+        {
+          "ruleId": "b2d5a316-729d-3ac6-8ede-5893d477eeb1",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/dockerfiles/arm32v7.dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "FROM alpine AS builder"
+                  }
+                }
+              },
+              "message": {
+                "text": "scripts/dockerfiles/arm32v7.dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "545967970773bde2524f3bcce058996f3090f5d2c5e3d0136bf9cfcd151e664d",
+            "glog-pfp-ruleFileCode/v1": "4801299d70420cab286dd863db0835c8193236b2a367f2dde5d9539b8a24d44b"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "4801299d70420cab286dd863db0835c8193236b2a367f2dde5d9539b8a24d44b"
+          }
+        },
+        {
+          "ruleId": "18f872ca-1492-3066-a317-9ebe20863c6b",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "High Risk Dockerfile Vulnerability: Lack of Non-Root User Specification"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "scripts/dockerfiles/arm64v8.dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "FROM alpine AS builder"
+                  }
+                }
+              },
+              "message": {
+                "text": "scripts/dockerfiles/arm64v8.dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "750214cd667be1a27b58341f11e2c405ff8ae0c8e5537f94d291c18aac8a8fcb",
+            "glog-pfp-ruleFileCode/v1": "05a1c55c52854b5fb73e6c3b15c6e22bbd075ecb38810dd0a1cdf62d3b484d4d"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "05a1c55c52854b5fb73e6c3b15c6e22bbd075ecb38810dd0a1cdf62d3b484d4d"
+          }
+        }
+      ],
+      "newlineSequences": [
+        "\r\n",
+        "\n"
+      ]
+    }
+  ]
+}
